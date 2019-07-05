@@ -1,3 +1,9 @@
+/*
+ * @Author: ykst
+ * @Date: 2019-07-04 22:19:47
+ * @LastEditors: ykst
+ * @LastEditTime: 2019-07-06 00:13:08
+ */
 import { AxiosInstance } from './types'
 import Axios from './core/Axios'
 import { extend } from './helpers/util'
