@@ -34,9 +34,9 @@ registerErrorRouter()
 
 registerExtendRouter()
 
-// registerInterceptorRouter()
+registerInterceptorRouter()
 
-// registerConfigRouter()
+registerConfigRouter()
 
 app.use(router);
 
