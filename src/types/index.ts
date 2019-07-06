@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-06 22:48:36
+ * @LastEditTime: 2019-07-06 23:05:38
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -76,6 +76,10 @@ export interface Axios {
 export interface AxiosInstance extends Axios {
   <T = any>(config: AxiosRequestConfig): AxiosPromise<T>
   <T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T>
+}
+
+export interface AxiosStatic extends AxiosInstance {
+  create(config: AxiosRequestConfig): AxiosInstance
 }
 
 export interface AxiosInterceptor<T> {
