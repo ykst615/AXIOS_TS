@@ -2,9 +2,11 @@
  * @Author: ykst
  * @Date: 2019-07-06 16:38:17
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-06 21:52:59
+ * @LastEditTime: 2019-07-06 22:34:47
  */
 import { AxiosRequestConfig } from './types'
+import { processHeaders } from './helpers/headers'
+import { transformRequest, transformResponse } from './helpers/data'
 
 const defaults: AxiosRequestConfig = {
   method: 'get',
@@ -13,7 +15,18 @@ const defaults: AxiosRequestConfig = {
     common: {
       Accept: 'application/json,text/plain,*/*'
     }
-  }
+  },
+  transformRequest: [
+    function(data: any, headers: any): any {
+      processHeaders(headers, data)
+      return transformRequest(data)
+    }
+  ],
+  transformResponse: [
+    function(data: any, headers: any): any {
+      return transformResponse(data)
+    }
+  ]
 }
 
 const methodsNodeData = ['delete', 'get', 'head', 'options']

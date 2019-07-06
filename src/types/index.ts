@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-06 18:11:23
+ * @LastEditTime: 2019-07-06 22:48:36
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -29,6 +29,8 @@ export interface AxiosRequestConfig {
   headers?: any
   responseType?: XMLHttpRequestResponseType
   timeout?: number
+  transformRequest?: AxiosTransformer | AxiosTransformer[]
+  transformResponse?: AxiosTransformer | AxiosTransformer[]
 
   [key: string]: any
 }
@@ -87,4 +89,8 @@ export interface ResolvedFn<T> {
 
 export interface RejectedFn {
   (error: any): any
+}
+
+export interface AxiosTransformer {
+  (data: any, headers?: any): any
 }
