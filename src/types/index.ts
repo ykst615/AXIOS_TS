@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-06 00:17:28
+ * @LastEditTime: 2019-07-06 18:11:23
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -29,6 +29,8 @@ export interface AxiosRequestConfig {
   headers?: any
   responseType?: XMLHttpRequestResponseType
   timeout?: number
+
+  [key: string]: any
 }
 
 export interface AxiosResponse<T = any> {
@@ -51,6 +53,7 @@ export interface AxiosError extends Error {
 }
 
 export interface Axios {
+  defaults: AxiosRequestConfig
   interceptors: {
     request: InterceptorManager<AxiosRequestConfig>
     response: InterceptorManager<AxiosResponse>
