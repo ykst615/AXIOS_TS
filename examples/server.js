@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-04-21 15:50:36
  * @LastEditors: ykst
- * @LastEditTime: 2019-04-21 15:50:36
+ * @LastEditTime: 2019-07-07 15:09:22
  */
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -45,6 +45,8 @@ registerExtendRouter()
 registerInterceptorRouter()
 
 registerConfigRouter()
+
+registerCancelRouter()
 
 app.use(router)
 
@@ -157,5 +159,19 @@ function registerInterceptorRouter() {
 function registerConfigRouter() {
   router.post('/config/post', function(req, res) {
     res.json(req.body)
+  })
+}
+
+function registerCancelRouter() {
+  router.get('/cancel/get', function(req, res) {
+    setTimeout(() => {
+      res.json('hello')
+    }, 1000)
+  })
+
+  router.post('/cancel/post', function(req, res) {
+    setTimeout(() => {
+      res.json(req.body)
+    }, 1000)
   })
 }
