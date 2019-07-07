@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:24:09
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-07 00:56:39
+ * @LastEditTime: 2019-07-07 20:15:44
  */
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
 import { parseHeaders } from '../helpers/headers'
@@ -11,7 +11,16 @@ import { createError } from '../helpers/error'
 
 export default function xhr(config: AxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
-    const { data = null, url, method = 'get', headers, responseType, timeout, cancelToken } = config
+    const {
+      data = null,
+      url,
+      method = 'get',
+      headers,
+      responseType,
+      timeout,
+      cancelToken,
+      withCredentials
+    } = config
 
     const request = new XMLHttpRequest()
 
@@ -21,6 +30,10 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
 
     if (timeout) {
       request.timeout = timeout
+    }
+
+    if (withCredentials) {
+      request.withCredentials = withCredentials
     }
 
     request.open(method.toUpperCase(), url!, true)
@@ -64,7 +77,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
     })
 
     if (cancelToken) {
-      cancelToken.promise.then((reason) => {
+      cancelToken.promise.then(reason => {
         request.abort()
         reject(reason)
       })

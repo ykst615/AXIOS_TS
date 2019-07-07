@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-07 15:02:29
+ * @LastEditTime: 2019-07-07 20:17:05
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -32,6 +32,7 @@ export interface AxiosRequestConfig {
   transformRequest?: AxiosTransformer | AxiosTransformer[]
   transformResponse?: AxiosTransformer | AxiosTransformer[]
   cancelToken?: CancelToken
+  withCredentials?: boolean
 
   [key: string]: any
 }
