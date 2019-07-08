@@ -1,4 +1,16 @@
+/*
+ * @Desc:
+ * @Author: ykst
+ * @Date: 2019-07-02 09:42:56
+ * @LastEditors: ykst
+ * @LastEditTime: 2019-07-07 22:47:16
+ */
 import { isDate, isPlainObject } from './util'
+
+interface URLOrigin {
+  protocol: string
+  host: string
+}
 
 function encode(val: string): string {
   return encodeURIComponent(val)
@@ -49,4 +61,23 @@ export function buildURL(url: string, params?: any): string {
     url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams
   }
   return url
+}
+
+export function isURLSameOrigin(requestURL: string): boolean {
+  const parsedOrigin = resolvedURL(requestURL)
+  return (Object.keys(parsedOrigin) as (keyof URLOrigin)[]).every(key => {
+    return parsedOrigin[key] === currentOrigin[key]
+  })
+}
+
+const urlParsingNode = document.createElement('a')
+const currentOrigin = resolvedURL(window.location.href)
+
+function resolvedURL(url: string): URLOrigin {
+  urlParsingNode.setAttribute('href', url)
+  const { protocol, host } = urlParsingNode
+  return {
+    protocol,
+    host
+  }
 }

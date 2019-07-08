@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-04-21 15:50:36
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-07 20:42:12
+ * @LastEditTime: 2019-07-08 09:20:13
  */
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -29,7 +29,13 @@ app.use(
 
 app.use(webpackHotMiddleware(compiler))
 
-app.use(express.static(__dirname))
+app.use(
+  express.static(__dirname, {
+    setHeaders(res) {
+      res.cookie('XSRF-TOKEN-D', '1234abc')
+    }
+  })
+)
 
 app.use(bodyParser.json())
 // app.use(bodyParser.text())

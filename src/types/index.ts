@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-07 20:17:05
+ * @LastEditTime: 2019-07-08 09:16:40
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -33,6 +33,8 @@ export interface AxiosRequestConfig {
   transformResponse?: AxiosTransformer | AxiosTransformer[]
   cancelToken?: CancelToken
   withCredentials?: boolean
+  xsrfCookieName?: string
+  xsrfHeaderName?: string
 
   [key: string]: any
 }
