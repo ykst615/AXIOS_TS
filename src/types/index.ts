@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-08 09:16:40
+ * @LastEditTime: 2019-07-08 22:33:38
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -35,6 +35,8 @@ export interface AxiosRequestConfig {
   withCredentials?: boolean
   xsrfCookieName?: string
   xsrfHeaderName?: string
+  onDownloadProgress?: (event: ProgressEvent) => void
+  onUploadProgress?: (event: ProgressEvent) => void
 
   [key: string]: any
 }
