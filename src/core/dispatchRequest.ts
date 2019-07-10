@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-04 22:36:50
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-10 22:34:30
+ * @LastEditTime: 2019-07-10 23:07:48
  */
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
 import xhr from './xhr'
@@ -26,7 +26,7 @@ function processConfig(config: AxiosRequestConfig): void {
   config.headers = flattenHeaders(config.headers, config.method!)
 }
 
-function transformURL(config: AxiosRequestConfig): string {
+export function transformURL(config: AxiosRequestConfig): string {
   let { url, params, paramsSerializer, baseUrl } = config
   if (baseUrl && !isAbsoluteURL(url!)) {
     url = combineURL(baseUrl, url)
