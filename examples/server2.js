@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-07 20:29:12
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-07 20:42:06
+ * @LastEditTime: 2019-07-10 22:05:40
  */
 const express = require('express')
 const bodyParse = require('body-parser')
@@ -38,4 +38,4 @@ app.use(router)
 
 const port = 8088
 
-module.exports - app.listen(port)
+module.exports = app.listen(port)

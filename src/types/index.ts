@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-09 22:43:15
+ * @LastEditTime: 2019-07-10 21:52:59
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -38,6 +38,7 @@ export interface AxiosRequestConfig {
   onDownloadProgress?: (event: ProgressEvent) => void
   onUploadProgress?: (event: ProgressEvent) => void
   auth?: AxiosBasicCredentials
+  validateStatus?: (status: number) => boolean
 
   [key: string]: any
 }

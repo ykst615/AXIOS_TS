@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-04-21 15:50:36
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-08 09:20:13
+ * @LastEditTime: 2019-07-10 22:00:46
  */
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -191,5 +191,10 @@ function registerCancelRouter() {
 function registerMoreRouter() {
   router.get('/more/get', function(req, res) {
     res.json(req.cookies)
+  })
+
+  router.get('/more/304', function(req, res) {
+    res.status(304)
+    res.end()
   })
 }
