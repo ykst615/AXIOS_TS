@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-04 22:36:50
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-07 14:48:34
+ * @LastEditTime: 2019-07-10 22:16:37
  */
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
 import xhr from './xhr'
@@ -27,8 +27,8 @@ function processConfig(config: AxiosRequestConfig): void {
 }
 
 function transformURL(config: AxiosRequestConfig): string {
-  const { url, params } = config
-  return buildURL(url!, params)
+  const { url, params, paramsSerializer } = config
+  return buildURL(url!, params, paramsSerializer)
 }
 
 function transformResponseData(res: AxiosResponse): AxiosResponse {

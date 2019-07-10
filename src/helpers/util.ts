@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-02 09:49:41
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-08 22:37:59
+ * @LastEditTime: 2019-07-10 22:13:45
  */
 const toString = Object.prototype.toString
 
@@ -49,4 +49,8 @@ export function deepMerge(...objs: any[]): any {
 
 export function isFormData(val: any): val is FormData {
   return toString.call(val) === '[object FormData]'
+}
+
+export function isURLSearchParams(val: any): val is URLSearchParams {
+  return toString.call(val) === '[object URLSearchParams]'
 }

@@ -3,9 +3,9 @@
  * @Author: ykst
  * @Date: 2019-07-02 09:42:56
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-07 22:47:16
+ * @LastEditTime: 2019-07-10 22:15:58
  */
-import { isDate, isPlainObject } from './util'
+import { isDate, isPlainObject, isURLSearchParams } from './util'
 
 interface URLOrigin {
   protocol: string
@@ -23,36 +23,48 @@ function encode(val: string): string {
     .replace(/%5D/g, ']')
 }
 
-export function buildURL(url: string, params?: any): string {
+export function buildURL(
+  url: string,
+  params?: any,
+  paramsSerializer?: (params: any) => string
+): string {
   if (!params) {
     return url
   }
 
-  const parts: string[] = []
+  let serializedParams: string
 
-  Object.keys(params).forEach((key: string) => {
-    const val: any = params[key]
-    if (val === null || typeof val === 'undefined') {
-      return
-    }
-    let values: any[] = []
-    if (Array.isArray(val)) {
-      values = val
-      key += '[]'
-    } else {
-      values = [val]
-    }
-    values.forEach(val => {
-      if (isDate(val)) {
-        val = val.toISOString()
-      } else if (isPlainObject(val)) {
-        val = JSON.stringify(val)
+  if (paramsSerializer) {
+    serializedParams = paramsSerializer(params)
+  } else if (isURLSearchParams(params)) {
+    serializedParams = params.toString()
+  } else {
+    const parts: string[] = []
+
+    Object.keys(params).forEach((key: string) => {
+      const val: any = params[key]
+      if (val === null || typeof val === 'undefined') {
+        return
       }
-      parts.push(`${encode(key)}=${encode(val)}`)
+      let values: any[] = []
+      if (Array.isArray(val)) {
+        values = val
+        key += '[]'
+      } else {
+        values = [val]
+      }
+      values.forEach(val => {
+        if (isDate(val)) {
+          val = val.toISOString()
+        } else if (isPlainObject(val)) {
+          val = JSON.stringify(val)
+        }
+        parts.push(`${encode(key)}=${encode(val)}`)
+      })
     })
-  })
 
-  let serializedParams: string = parts.join('&')
+    serializedParams = parts.join('&')
+  }
   if (serializedParams) {
     const markIndex = url.indexOf('#')
     if (markIndex !== -1) {
