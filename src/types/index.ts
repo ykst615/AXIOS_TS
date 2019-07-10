@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-08 22:33:38
+ * @LastEditTime: 2019-07-09 22:43:15
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -37,6 +37,7 @@ export interface AxiosRequestConfig {
   xsrfHeaderName?: string
   onDownloadProgress?: (event: ProgressEvent) => void
   onUploadProgress?: (event: ProgressEvent) => void
+  auth?: AxiosBasicCredentials
 
   [key: string]: any
 }
@@ -139,4 +140,9 @@ export interface Cancel {
 
 export interface CancelStatic {
   new (message?: string): Cancel
+}
+
+export interface AxiosBasicCredentials {
+  userName: string
+  password: string
 }

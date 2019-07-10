@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:24:09
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-08 22:48:25
+ * @LastEditTime: 2019-07-09 22:45:25
  */
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
 import { parseHeaders } from '../helpers/headers'
@@ -26,7 +26,8 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       xsrfCookieName,
       xsrfHeaderName,
       onDownloadProgress,
-      onUploadProgress
+      onUploadProgress,
+      auth
     } = config
 
     const request = new XMLHttpRequest()
@@ -107,6 +108,10 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
         if (xsrfValue) {
           headers[xsrfHeaderName] = xsrfCookieName
         }
+      }
+
+      if (auth) {
+        headers['Authorization'] = 'Basic ' + btoa(auth.userName + ':' + auth.password)
       }
 
       Object.keys(headers).forEach(name => {

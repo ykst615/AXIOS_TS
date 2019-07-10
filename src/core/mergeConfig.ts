@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-06 17:12:12
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-06 18:39:55
+ * @LastEditTime: 2019-07-09 22:43:49
  */
 import { AxiosRequestConfig } from '../types'
 import { isPlainObject, deepMerge } from '../helpers/util'
@@ -38,7 +38,7 @@ stratKeysFroVal2.forEach(key => {
   strats[key] = fromVal2Strat
 })
 
-const stratkeysDeepMerge = ['headers']
+const stratkeysDeepMerge = ['headers', 'auth']
 
 stratkeysDeepMerge.forEach(key => {
   strats[key] = deepMergeStrat
