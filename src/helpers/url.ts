@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-02 09:42:56
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-10 22:15:58
+ * @LastEditTime: 2019-07-10 22:31:43
  */
 import { isDate, isPlainObject, isURLSearchParams } from './util'
 
@@ -92,4 +92,12 @@ function resolvedURL(url: string): URLOrigin {
     protocol,
     host
   }
+}
+
+export function isAbsoluteURL(url: string): boolean {
+  return /(^[a-z][a-z\d\+\-\.]*:)*\/\//i.test(url)
+}
+
+export function combineURL(baseURL: string, relativeURL?: string): string {
+  return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL
 }

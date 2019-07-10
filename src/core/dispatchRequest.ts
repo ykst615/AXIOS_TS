@@ -3,11 +3,11 @@
  * @Author: ykst
  * @Date: 2019-07-04 22:36:50
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-10 22:16:37
+ * @LastEditTime: 2019-07-10 22:34:30
  */
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
 import xhr from './xhr'
-import { buildURL } from '../helpers/url'
+import { buildURL, isAbsoluteURL, combineURL } from '../helpers/url'
 import { flattenHeaders } from '../helpers/headers'
 import transform from './transform'
 
@@ -27,7 +27,10 @@ function processConfig(config: AxiosRequestConfig): void {
 }
 
 function transformURL(config: AxiosRequestConfig): string {
-  const { url, params, paramsSerializer } = config
+  let { url, params, paramsSerializer, baseUrl } = config
+  if (baseUrl && !isAbsoluteURL(url!)) {
+    url = combineURL(baseUrl, url)
+  }
   return buildURL(url!, params, paramsSerializer)
 }
 

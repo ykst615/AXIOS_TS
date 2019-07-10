@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-10 22:08:57
+ * @LastEditTime: 2019-07-10 22:26:26
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -40,6 +40,7 @@ export interface AxiosRequestConfig {
   auth?: AxiosBasicCredentials
   validateStatus?: (status: number) => boolean
   paramsSerializer?: (params: any) => string
+  baseUrl?: string
 
   [key: string]: any
 }
