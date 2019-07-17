@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-03 08:52:19
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-06 18:58:40
+ * @LastEditTime: 2019-07-17 23:53:05
  */
 import { isPlainObject, deepMerge } from './util'
 import { Method } from '../types'
@@ -25,7 +25,7 @@ export function processHeaders(headers: any = {}, data: any): any {
 
   if (isPlainObject(data)) {
     if (headers && !headers['Content-Type']) {
-      headers['Content-Type'] = 'application/json;charset=utf-8' // key对大小写不明白
+      headers['Content-Type'] = 'application/json;charset=utf-8' // key对大小写不敏感
     }
   }
 
@@ -39,15 +39,12 @@ export function parseHeaders(headers: string): any {
   }
 
   headers.split('\r\n').forEach(line => {
-    let [key, val] = line.split(':')
+    let [key, ...vals] = line.split(':')
     key = key.trim().toLowerCase()
-    if (!key) {
-      return
+    if (key) {
+      const val = vals.join(':').trim()
+      parsed[key] = val
     }
-    if (val) {
-      val = val.trim()
-    }
-    parsed[key] = val
   })
 
   return parsed
