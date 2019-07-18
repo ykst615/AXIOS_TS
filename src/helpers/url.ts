@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-02 09:42:56
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-10 22:31:43
+ * @LastEditTime: 2019-07-19 00:51:24
  */
 import { isDate, isPlainObject, isURLSearchParams } from './util'
 
@@ -77,9 +77,9 @@ export function buildURL(
 
 export function isURLSameOrigin(requestURL: string): boolean {
   const parsedOrigin = resolvedURL(requestURL)
-  return (Object.keys(parsedOrigin) as (keyof URLOrigin)[]).every(key => {
-    return parsedOrigin[key] === currentOrigin[key]
-  })
+  return (
+    parsedOrigin.protocol === currentOrigin.protocol && parsedOrigin.host === currentOrigin.host
+  )
 }
 
 const urlParsingNode = document.createElement('a')
@@ -95,7 +95,7 @@ function resolvedURL(url: string): URLOrigin {
 }
 
 export function isAbsoluteURL(url: string): boolean {
-  return /(^[a-z][a-z\d\+\-\.]*:)*\/\//i.test(url)
+  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url)
 }
 
 export function combineURL(baseURL: string, relativeURL?: string): string {
