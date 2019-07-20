@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-04 22:35:43
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-10 23:08:18
+ * @LastEditTime: 2019-07-21 00:00:40
  */
 import {
   AxiosRequestConfig,
@@ -47,6 +47,7 @@ export default class Axios {
     }
 
     config = mergeConfig(this.defaults, config)
+    config.method = config.method.toLowerCase()
 
     const chain: PromiseChain<any>[] = [
       {

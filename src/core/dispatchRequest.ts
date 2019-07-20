@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-04 22:36:50
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-10 23:07:48
+ * @LastEditTime: 2019-07-21 00:04:04
  */
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
 import xhr from './xhr'
@@ -14,9 +14,17 @@ import transform from './transform'
 export default function dispatchRequest(config: AxiosRequestConfig): AxiosPromise {
   throwIfCancellationRequested(config)
   processConfig(config)
-  return xhr(config).then(res => {
-    return transformResponseData(res)
-  })
+  return xhr(config).then(
+    res => {
+      return transformResponseData(res)
+    },
+    error => {
+      if (error && error.response) {
+        error.response = transformResponseData(error.response)
+      }
+      return Promise.reject(error)
+    }
+  )
 }
 
 function processConfig(config: AxiosRequestConfig): void {

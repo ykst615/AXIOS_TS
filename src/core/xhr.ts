@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:24:09
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-10 21:56:58
+ * @LastEditTime: 2019-07-20 23:56:49
  */
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
 import { parseHeaders } from '../helpers/headers'
@@ -112,7 +112,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       }
 
       if (auth) {
-        headers['Authorization'] = 'Basic ' + btoa(auth.userName + ':' + auth.password)
+        headers['Authorization'] = 'Basic ' + btoa(auth.username + ':' + auth.password)
       }
 
       Object.keys(headers).forEach(name => {

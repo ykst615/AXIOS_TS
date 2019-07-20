@@ -130,8 +130,11 @@
     "webpack-hot-middleware": "2.24.3"
   },
   "dependencies": {
+    "@types/jasmine-ajax": "^3.1.40",
     "@types/qs": "^6.5.3",
     "cookie-parser": "^1.4.4",
+    "jasmine-ajax": "^4.0.0",
+    "jasmine-core": "^3.4.0",
     "qs": "^6.7.0"
   }
 }

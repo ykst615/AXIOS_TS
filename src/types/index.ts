@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-10 23:05:07
+ * @LastEditTime: 2019-07-20 23:56:50
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -157,6 +157,6 @@ export interface CancelStatic {
 }
 
 export interface AxiosBasicCredentials {
-  userName: string
+  username: string
   password: string
 }
