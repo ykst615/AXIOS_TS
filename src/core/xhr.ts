@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:24:09
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-20 23:56:49
+ * @LastEditTime: 2019-07-21 15:18:09
  */
 import { AxiosRequestConfig, AxiosPromise, AxiosResponse } from '../types'
 import { parseHeaders } from '../helpers/headers'
@@ -18,7 +18,7 @@ export default function xhr(config: AxiosRequestConfig): AxiosPromise {
       data = null,
       url,
       method = 'get',
-      headers,
+      headers = {},
       responseType,
       timeout,
       cancelToken,

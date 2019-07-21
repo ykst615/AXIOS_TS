@@ -2,7 +2,7 @@
  * @Author: ykst
  * @Date: 2019-07-01 23:18:26
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-20 23:56:50
+ * @LastEditTime: 2019-07-21 14:20:20
  */
 import InterceptorManager from '../core/interceptorManager'
 export type Method =
@@ -94,7 +94,7 @@ export interface AxiosClassStatic {
 }
 
 export interface AxiosStatic extends AxiosInstance {
-  create(config: AxiosRequestConfig): AxiosInstance
+  create(config?: AxiosRequestConfig): AxiosInstance
 
   CancelToken: CancelTokenStatic
   Cancel: CancelStatic
