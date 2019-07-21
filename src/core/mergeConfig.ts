@@ -3,7 +3,7 @@
  * @Author: ykst
  * @Date: 2019-07-06 17:12:12
  * @LastEditors: ykst
- * @LastEditTime: 2019-07-09 22:43:49
+ * @LastEditTime: 2019-07-21 23:08:29
  */
 import { AxiosRequestConfig } from '../types'
 import { isPlainObject, deepMerge } from '../helpers/util'
@@ -27,7 +27,7 @@ function deepMergeStrat(val1: any, val2: any): any {
     return val2
   } else if (isPlainObject(val1)) {
     return deepMerge(val1)
-  } else if (typeof val1 !== 'undefined') {
+  } else {
     return val1
   }
 }
